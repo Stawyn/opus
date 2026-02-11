@@ -24,23 +24,28 @@ opus/
 
 ### 1. Sequenciador de Batidas
 - Grid de 16 steps (colunas)
-- 4 tracks de instrumentos (linhas): Kick, Snare, Hi-Hat, Clap
+- 6 tracks de instrumentos (linhas): Kick, Snare, Hi-Hat, Clap, Tom, Cymbal
 - Clique para ativar/desativar cada nota
 - Feedback visual durante a reprodução
 
 ### 2. Motor de Áudio
 - Síntese de som em tempo real usando Web Audio API
 - Não requer arquivos de áudio externos
-- 4 instrumentos de percussão sintetizados:
+- 6 instrumentos de percussão sintetizados:
   - **Kick**: Bumbo grave usando oscilador
   - **Snare**: Caixa com ruído filtrado
   - **Hi-Hat**: Chimbal com ruído de alta frequência
   - **Clap**: Palma com ruído de média frequência
+  - **Tom**: Tom-tom com oscilador de frequência decrescente
+  - **Cymbal**: Prato com ruído de alta frequência e longa duração
 
 ### 3. Controles Interativos
 - **Botão Play**: Inicia a reprodução do padrão em loop
 - **Botão Stop**: Para a reprodução
 - **Botão Limpar**: Remove todas as notas do grid
+- **Botão Salvar**: Salva o padrão atual em arquivo JSON
+- **Botão Carregar**: Carrega um padrão de arquivo JSON
+- **Seletor de Presets**: Carrega padrões de exemplo (Básico, Techno, Hip-Hop, House)
 - **Controle de Tempo**: Slider de 60 a 180 BPM
 - **Controle de Volume**: Slider de 0 a 100%
 
@@ -71,7 +76,15 @@ opus/
    - Use o slider de Tempo para controlar a velocidade
    - Use o slider de Volume para ajustar o volume geral
 
-4. **Reproduzir**:
+4. **Usar presets**:
+   - Selecione um preset do menu dropdown para carregar padrões de exemplo
+   - Escolha entre Básico, Techno, Hip-Hop ou House
+
+5. **Salvar e carregar**:
+   - Clique em "Salvar" para exportar seu padrão como arquivo JSON
+   - Clique em "Carregar" para importar um padrão salvo anteriormente
+
+6. **Reproduzir**:
    - Clique em Play para ouvir seu padrão
    - O sequenciador toca em loop automaticamente
    - As células acesas pulsam durante a reprodução
@@ -88,22 +101,23 @@ opus/
 ✅ Todos os arquivos necessários criados
 ✅ Estrutura HTML validada
 ✅ Classes JavaScript implementadas corretamente
-✅ Todos os 4 instrumentos funcionando
+✅ Todos os 6 instrumentos funcionando
 ✅ Estilos CSS aplicados
 ✅ Aplicação testada no navegador
+✅ Funcionalidades de salvar/carregar testadas
+✅ 4 presets implementados e testados
 ✅ Code review concluído
 ✅ Análise de segurança CodeQL - Nenhuma vulnerabilidade
 
 ## Futuras Melhorias Possíveis
 
-- Adicionar mais instrumentos e sons
-- Implementar salvamento e carregamento de padrões
 - Exportar áudio para arquivo WAV/MP3
 - Adicionar múltiplas cenas/padrões
 - Implementar efeitos de áudio (reverb, delay, filtros)
 - Suporte para upload de samples customizados
 - Modo de gravação ao vivo
 - Integração com MIDI
+- Mais presets e estilos musicais
 
 ## Conclusão
 

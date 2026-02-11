@@ -31,6 +31,18 @@
                 </div>
                 
                 <div class="control-group">
+                    <button id="save-btn" class="btn btn-success">💾 Salvar</button>
+                    <button id="load-btn" class="btn btn-info">📂 Carregar</button>
+                    <select id="preset-select" class="preset-select">
+                        <option value="">Carregar Preset...</option>
+                        <option value="basic">🎵 Básico</option>
+                        <option value="techno">🎹 Techno</option>
+                        <option value="hiphop">🎤 Hip-Hop</option>
+                        <option value="house">🏠 House</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
                     <label for="tempo">Tempo (BPM):</label>
                     <input type="range" id="tempo" min="60" max="180" value="120">
                     <span id="tempo-value">120</span>
@@ -58,6 +70,12 @@
                     </div>
                     <div class="instrument-item" data-sound="clap">
                         <span>👏 Clap</span>
+                    </div>
+                    <div class="instrument-item" data-sound="tom">
+                        <span>🥁 Tom</span>
+                    </div>
+                    <div class="instrument-item" data-sound="cymbal">
+                        <span>🥁 Cymbal</span>
                     </div>
                 </div>
             </section>

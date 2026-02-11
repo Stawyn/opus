@@ -42,6 +42,8 @@ O Opus Maker é uma aplicação web interativa que permite criar padrões de bat
 - **🥁 Snare:** Caixa
 - **🎩 Hi-Hat:** Chimbal
 - **👏 Clap:** Palma
+- **🥁 Tom:** Tom-tom
+- **🥁 Cymbal:** Prato
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -69,23 +71,25 @@ opus/
 ### Implementadas ✅
 
 - [x] Sequenciador de grid 16 steps
-- [x] 4 instrumentos de percussão sintéticos
+- [x] 6 instrumentos de percussão sintéticos
 - [x] Controle de tempo (BPM)
 - [x] Controle de volume
 - [x] Reprodução em loop
 - [x] Interface visual responsiva
 - [x] Feedback visual durante reprodução
 - [x] Teste individual de instrumentos
+- [x] Salvar padrões em arquivo JSON
+- [x] Carregar padrões de arquivo
+- [x] 4 presets de exemplo (Básico, Techno, Hip-Hop, House)
 
 ### Futuras Melhorias 🚀
 
-- [ ] Adicionar mais instrumentos
-- [ ] Salvar e carregar padrões
 - [ ] Exportar áudio para arquivo
 - [ ] Múltiplos padrões/cenas
 - [ ] Efeitos de áudio (reverb, delay)
 - [ ] Suporte para samples customizados
 - [ ] Modo de gravação ao vivo
+- [ ] Integração com MIDI
 
 ## 🎨 Capturas de Tela
 

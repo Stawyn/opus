@@ -158,6 +158,49 @@ h2 {
     transform: translateY(-2px);
 }
 
+.btn-success {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #138496;
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-info:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+}
+
+.preset-select {
+    padding: 12px 16px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    background: white;
+    color: #333;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.preset-select:hover {
+    border-color: #764ba2;
+    background: #f8f9fa;
+}
+
+.preset-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
 input[type="range"] {
     flex: 1;
     height: 8px;

@@ -2,7 +2,7 @@
 class Sequencer {
     constructor(audioEngine) {
         this.audioEngine = audioEngine;
-        this.tracks = ['kick', 'snare', 'hihat', 'clap'];
+        this.tracks = ['kick', 'snare', 'hihat', 'clap', 'tom', 'cymbal'];
         this.steps = 16;
         this.currentStep = 0;
         this.isPlaying = false;
@@ -55,7 +55,9 @@ class Sequencer {
             'kick': '🥁 Kick',
             'snare': '🥁 Snare',
             'hihat': '🎩 Hi-Hat',
-            'clap': '👏 Clap'
+            'clap': '👏 Clap',
+            'tom': '🥁 Tom',
+            'cymbal': '🥁 Cymbal'
         };
         return labels[track] || track;
     }
@@ -135,6 +137,84 @@ class Sequencer {
         if (this.isPlaying) {
             this.stop();
             this.play();
+        }
+    }
+
+    savePattern() {
+        const patternData = {
+            pattern: this.pattern,
+            tempo: this.tempo,
+            timestamp: new Date().toISOString()
+        };
+        const dataStr = JSON.stringify(patternData, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `opus-pattern-${Date.now()}.json`;
+        link.click();
+        
+        URL.revokeObjectURL(url);
+    }
+
+    loadPattern(patternData) {
+        this.stop();
+        if (patternData.pattern) {
+            this.pattern = patternData.pattern;
+        }
+        if (patternData.tempo) {
+            this.tempo = patternData.tempo;
+            document.getElementById('tempo').value = this.tempo;
+            document.getElementById('tempo-value').textContent = this.tempo;
+        }
+        this.createGrid();
+    }
+
+    loadPreset(presetName) {
+        const presets = {
+            'basic': {
+                'kick': [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
+                'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'hihat': [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+                'clap': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                'tom': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                'cymbal': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            },
+            'techno': {
+                'kick': [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
+                'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'hihat': [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                'clap': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'tom': [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1],
+                'cymbal': [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
+            },
+            'hiphop': {
+                'kick': [1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0],
+                'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'hihat': [1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1],
+                'clap': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'tom': [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],
+                'cymbal': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            },
+            'house': {
+                'kick': [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
+                'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'hihat': [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],
+                'clap': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+                'tom': [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],
+                'cymbal': [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            }
+        };
+
+        if (presets[presetName]) {
+            const pattern = presets[presetName];
+            Object.keys(pattern).forEach(track => {
+                if (this.pattern[track]) {
+                    this.pattern[track] = pattern[track].map(v => Boolean(v));
+                }
+            });
+            this.createGrid();
         }
     }
 }

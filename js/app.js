@@ -70,6 +70,47 @@ function setupControls() {
             audioEngine.setVolume(parseInt(volume));
         }
     });
+
+    // Botão Salvar
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.addEventListener('click', () => {
+        sequencer.savePattern();
+    });
+
+    // Botão Carregar
+    const loadBtn = document.getElementById('load-btn');
+    loadBtn.addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const patternData = JSON.parse(event.target.result);
+                        sequencer.loadPattern(patternData);
+                    } catch (error) {
+                        alert('Erro ao carregar o padrão. Verifique se o arquivo está correto.');
+                        console.error('Erro ao carregar padrão:', error);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        };
+        input.click();
+    });
+
+    // Seletor de Presets
+    const presetSelect = document.getElementById('preset-select');
+    presetSelect.addEventListener('change', (e) => {
+        const preset = e.target.value;
+        if (preset) {
+            sequencer.loadPreset(preset);
+            e.target.value = ''; // Reset select
+        }
+    });
 }
 
 function setupInstruments() {
@@ -92,30 +133,4 @@ function setupInstruments() {
             }, 100);
         });
     });
-}
-
-// Adicionar padrões de exemplo
-function loadExamplePattern(patternName) {
-    const patterns = {
-        'basic': {
-            'kick': [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
-            'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
-            'hihat': [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-            'clap': [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        },
-        'techno': {
-            'kick': [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
-            'snare': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
-            'hihat': [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            'clap': [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0]
-        }
-    };
-
-    if (patterns[patternName]) {
-        const pattern = patterns[patternName];
-        Object.keys(pattern).forEach(track => {
-            sequencer.pattern[track] = pattern[track].map(v => Boolean(v));
-        });
-        sequencer.createGrid();
-    }
 }

@@ -125,6 +125,53 @@ class AudioEngine {
             noise.start(this.audioContext.currentTime);
             noise.stop(this.audioContext.currentTime + 0.1);
         };
+
+        // Tom (tom-tom)
+        this.sounds.tom = () => {
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+            
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+            
+            osc.frequency.setValueAtTime(200, this.audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(80, this.audioContext.currentTime + 0.3);
+            
+            gain.gain.setValueAtTime(this.volume * 0.8, this.audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
+            
+            osc.start(this.audioContext.currentTime);
+            osc.stop(this.audioContext.currentTime + 0.3);
+        };
+
+        // Cymbal (prato)
+        this.sounds.cymbal = () => {
+            const noise = this.audioContext.createBufferSource();
+            const noiseBuffer = this.audioContext.createBuffer(1, this.audioContext.sampleRate * 0.5, this.audioContext.sampleRate);
+            const noiseData = noiseBuffer.getChannelData(0);
+            
+            for (let i = 0; i < noiseBuffer.length; i++) {
+                noiseData[i] = Math.random() * 2 - 1;
+            }
+            
+            noise.buffer = noiseBuffer;
+            
+            const noiseFilter = this.audioContext.createBiquadFilter();
+            noiseFilter.type = 'highpass';
+            noiseFilter.frequency.value = 5000;
+            
+            const noiseGain = this.audioContext.createGain();
+            
+            noise.connect(noiseFilter);
+            noiseFilter.connect(noiseGain);
+            noiseGain.connect(this.audioContext.destination);
+            
+            noiseGain.gain.setValueAtTime(this.volume * 0.6, this.audioContext.currentTime);
+            noiseGain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.5);
+            
+            noise.start(this.audioContext.currentTime);
+            noise.stop(this.audioContext.currentTime + 0.5);
+        };
     }
 
     playSound(soundName) {
