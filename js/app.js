@@ -92,7 +92,7 @@ function setupControls() {
                         const patternData = JSON.parse(event.target.result);
                         sequencer.loadPattern(patternData);
                     } catch (error) {
-                        alert('Erro ao carregar o padrão. Verifique se o arquivo está correto.');
+                        alert(`Erro ao carregar o padrão: ${error.message}\n\nVerifique se o arquivo está correto.`);
                         console.error('Erro ao carregar padrão:', error);
                     }
                 };
