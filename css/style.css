@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+/* Sequenciador */
+.sequencer {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.beat-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(16, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.beat-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #667eea;
+    padding: 10px;
+}
+
+.beat-cell {
+    aspect-ratio: 1;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.beat-cell:hover {
+    background: #e9ecef;
+    border-color: #667eea;
+}
+
+.beat-cell.active {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.beat-cell.playing {
+    background: #764ba2;
+    border-color: #764ba2;
+    transform: scale(1.1);
+}
+
+/* Controles */
+.controls {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #28a745;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+input[type="range"] {
+    flex: 1;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    border: none;
+}
+
+/* Instrumentos */
+.instruments {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.instrument-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.instrument-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid #ddd;
+}
+
+.instrument-item:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: translateY(-5px);
+}
+
+.instrument-item span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+footer {
+    background: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    color: #6c757d;
+    border-top: 1px solid #ddd;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .beat-grid {
+        grid-template-columns: 80px repeat(8, 1fr);
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
