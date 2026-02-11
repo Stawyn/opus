@@ -81,7 +81,7 @@ opus/
 
 - [ ] Adicionar mais instrumentos
 - [ ] Salvar e carregar padrões
-- [ ] Exportar audio para arquivo
+- [ ] Exportar áudio para arquivo
 - [ ] Múltiplos padrões/cenas
 - [ ] Efeitos de áudio (reverb, delay)
 - [ ] Suporte para samples customizados
